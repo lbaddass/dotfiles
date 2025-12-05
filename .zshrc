@@ -1,3 +1,29 @@
+# Detectar iSH (Alpine Linux)
+if uname -a | grep -qi "alpine"; then
+  export ISH=1
+else
+  export ISH=0
+fi
+
+if [ "$ISH" = "1" ]; then
+  # ----- CONFIG ESPECIAL PARA iSH -----
+
+  export HISTSIZE=5000
+  export SAVEHIST=5000
+
+  # Prompt simple (sin Powerlevel10k, no funciona en iSH)
+  PS1='%n@iSH:%~$ '
+
+  alias ll='ls -la'
+  alias ws='cd ~/ws'
+
+  # Usar vi o nano; no existe nvim ni code
+  export EDITOR=nano
+
+  # Terminar aquí para no cargar cosas del Mac
+  return
+fi
+
 ##############################################
 # 0) Powerlevel10k Instant Prompt (mantener arriba)
 ##############################################
